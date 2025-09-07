@@ -54,7 +54,7 @@ def log_prediction(session_id, input_data, prediction=None, error=None):
 
 # Load the model
 try:
-    model = joblib.load('../outputs/models/gem_price_global.pkl')
+    model = joblib.load('../models/gem_price_global.pkl')
     print("Model loaded successfully")  # Console debug output
     logging.info("Model loaded successfully")
 except Exception as e:
@@ -70,7 +70,7 @@ numeric_features = [
 ]
 
 categorical_features = [
-    'Gem Type', 'Cut/Shape', 'ColourHue', 'Clarity', 
+    'Gem Type', 'Cut/Shape', 'Colour', 'Clarity', 
     'Treatments', 'Certification Status'
 ]
 
@@ -78,34 +78,47 @@ categorical_features = [
 def get_unique_values():
     try:
         # Load the dataset
-        df = pd.read_csv('../notebooks/data/gem-data.csv')
+        df = pd.read_csv('../notebooks/data/processed/cleaned_gems.csv')
         
         # Initialize the standardizer
         standardizer = GemStandardizer()
         
-        # Get color options
+        # Filter out 'Not Specified' treatments
+        df_filtered = df[df['Treatments'] != 'Not Specified'].copy()
+        
+        # Get filtered gem types (200+ records, grouped)
+        gem_type_options = standardizer.get_filtered_gem_types_from_dataset(df_filtered)
+        
+        # Get color options - use basic colors only for selection
         color_options = standardizer.get_color_options()
         
-        # Get gem type options
-        gem_type_options = standardizer.get_gem_type_options()
+        # Get actual values from dataset, filtered and cleaned
+        actual_cut_shapes = sorted([x for x in df_filtered['Cut/Shape'].unique().tolist() 
+                                  if str(x).strip() and str(x).lower() != 'nan' and x != 'Cut/Shape'])
         
-        # Get unique values for each categorical feature
+        # Get all unique colors from dataset (for the combined color field)
+        actual_colors = sorted([x for x in df_filtered['Colour'].unique().tolist() 
+                              if str(x).strip() and str(x).lower() != 'nan' and x != 'Colour'])
+        
+        actual_clarity = sorted([x for x in df_filtered['Clarity'].unique().tolist() 
+                               if str(x).strip() and str(x).lower() != 'nan' and x != 'Clarity'])
+        
+        actual_treatments = sorted([x for x in df_filtered['Treatments'].unique().tolist() 
+                                  if str(x).strip() and str(x).lower() != 'nan' and x != 'Treatments'])
+        
+        # Build final options
         valid_options = {
-            'Gem Type': sorted(list(gem_type_options.keys())),  # Base types
-            'Gem Variety': [var for vars in gem_type_options.values() for var in vars],  # Flattened varieties
-            'Cut/Shape': sorted(df['Cut/Shape'].unique().tolist()),
-            'Color': color_options['colors'],
-            'Tone': color_options['tones'],
-            'Color Modifier': color_options['modifiers'],  # Changed from ColorModifier to match frontend
-            'Clarity': sorted(df['Clarity'].unique().tolist()),
-            'Treatments': sorted(df['Treatments'].unique().tolist()),
-            'Certification': ['Yes', 'No']  # Changed from Certification Status to match frontend
+            'Gem Type': sorted(list(gem_type_options.keys())),  # Filtered base types (200+ records)
+            'Gem Variety': [var for vars in gem_type_options.values() for var in vars],  # Varieties from filtered types
+            'Cut/Shape': actual_cut_shapes,  # All cut/shapes from data
+            'Color': sorted(list(color_options['colors'])),  # Basic colors only for selection dropdown
+            'Tone': color_options['tones'],  # Standard tones for color building
+            'Color Modifier': color_options['modifiers'],  # Standard modifiers for color building  
+            'Clarity': actual_clarity,  # All clarity grades from data
+            'Treatments': actual_treatments,  # All treatments from data (excluding 'Not Specified')
+            'Certification': ['Yes', 'No']  # Simple Yes/No for certification
         }
         
-        # Clean the values (remove NaN, None, etc.)
-        for key in valid_options:
-            valid_options[key] = [str(x).strip() for x in valid_options[key] if str(x).strip() and str(x).lower() != 'nan']
-            
         return valid_options
     except Exception as e:
         print(f"Error loading options from dataset: {str(e)}")
@@ -117,12 +130,12 @@ def get_unique_values():
         return {
             'Gem Type': sorted(list(gem_type_options.keys())),
             'Gem Variety': [var for vars in gem_type_options.values() for var in vars],
-            'Cut/Shape': ['Oval', 'Cushion', 'Round', 'Pear', 'Emerald Cut', 'Princess', 'Marquise'],
-            'Color': color_options['colors'],
+            'Cut/Shape': ['Mixed Brilliant Oval', 'Mixed Brilliant Cushion', 'Asscher Asscher - Octagon', 'Step Cut Fancy', 'Mixed Brilliant Heart'],
+            'Color': sorted(list(color_options['colors'])),  # Basic colors only
             'Tone': color_options['tones'],
             'Color Modifier': color_options['modifiers'],
-            'Clarity': ['VVS', 'VS', 'SI1', 'SI2', 'I1', 'I2'],
-            'Treatments': ['Heated', 'Unheated', 'None'],
+            'Clarity': ['Eye Clean', 'VVS', 'VS', 'SI', 'I'],
+            'Treatments': ['Heat Treated', 'No Enhancement'],
             'Certification': ['Yes', 'No']
         }
 
@@ -243,7 +256,7 @@ def predict():
                 'Depth_mm': float(request.json['depth']),
                 'Gem Type': gem_type,
                 'Cut/Shape': request.json['cut_shape'],
-                'ColourHue': color_str,
+                'Colour': color_str,
                 'Clarity': request.json['clarity'],
                 'Treatments': request.json['treatments'],
                 'Certification Status': request.json['certification']
@@ -273,7 +286,7 @@ def predict():
                 'Gem Type': input_data['Gem Type'],
                 'Carat': f"{input_data['Carat Weight (ct)']:.2f} ct",
                 'Dimensions': f"{input_data['Length_mm']:.1f} x {input_data['Width_mm']:.1f} x {input_data['Depth_mm']:.1f} mm",
-                'Color': input_data['ColourHue'],
+                'Color': input_data['Colour'],
                 'Clarity': input_data['Clarity'],
                 'Treatment': input_data['Treatments']
             }
@@ -352,15 +365,34 @@ def home():
                 )
                 
                 try:
+                    # Get gem type and variety
+                    base_type = form_data['gem_type']
+                    variety = form_data.get('gem_variety', '')
+                    gem_type = variety if variety else base_type
+                    
+                    # Combine color components into full color string
+                    color_parts = {
+                        'tone': form_data.get('tone', ''),
+                        'color': form_data.get('color', ''),
+                        'modifier': form_data.get('color_modifier', '')
+                    }
+                    
+                    # Combine color components into full color string
+                    color_str = ' '.join(filter(None, [
+                        color_parts['tone'],
+                        color_parts['modifier'],
+                        color_parts['color']
+                    ]))
+                    
                     # Process form data
                     input_data = {
                         'Carat Weight (ct)': float(form_data['carat_weight']),
                         'Length_mm': float(form_data['length']),
                         'Width_mm': float(form_data['width']),
                         'Depth_mm': float(form_data['depth']),
-                        'Gem Type': form_data['gem_type'],
+                        'Gem Type': gem_type,
                         'Cut/Shape': form_data['cut_shape'],
-                        'ColourHue': form_data['color_hue'],
+                        'Colour': color_str,
                         'Clarity': form_data['clarity'],
                         'Treatments': form_data['treatments'],
                         'Certification Status': form_data['certification']
@@ -394,7 +426,7 @@ def home():
                             'Gem Type': input_data['Gem Type'],
                             'Carat': f"{input_data['Carat Weight (ct)']:.2f} ct",
                             'Dimensions': f"{input_data['Length_mm']:.1f} x {input_data['Width_mm']:.1f} x {input_data['Depth_mm']:.1f} mm",
-                            'Color': input_data['ColourHue'],
+                            'Color': input_data['Colour'],
                             'Clarity': input_data['Clarity'],
                             'Treatment': input_data['Treatments']
                         }

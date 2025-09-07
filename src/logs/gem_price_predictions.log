@@ -16,3 +16,31 @@
 2025-09-13 07:13:24 - INFO - [63d90caf-a20b-4e71-a4c5-88bca340dac2] - Successful prediction completed in 0.08s
 2025-09-13 07:14:05 - INFO - [af8509a4-8ca9-442e-b7ef-271b2af44776] - Received prediction request
 2025-09-13 07:14:05 - INFO - [af8509a4-8ca9-442e-b7ef-271b2af44776] - Successful prediction completed in 0.06s
+2025-09-13 09:36:59 - INFO - [0900f490-b9f3-48e3-a435-b539617998d0] - Received prediction request
+2025-09-13 09:36:59 - ERROR - [0900f490-b9f3-48e3-a435-b539617998d0] - {"timestamp": "2025-09-13T09:36:59.639421", "session_id": "0900f490-b9f3-48e3-a435-b539617998d0", "input_data": {"Carat Weight (ct)": 10.0, "Length_mm": 5.0, "Width_mm": 12.0, "Depth_mm": 3.0, "Gem Type": "Blue Sapphire", "Cut/Shape": "Oval", "ColourHue": "Light Blue", "Clarity": "VVS", "Treatments": "Unheated", "Certification Status": "Yes", "LW_Ratio": 0.4166666666666667, "DepthPct": 35.294117647058826}, "prediction": null, "error": "Model not loaded. Please check server logs."}
+2025-09-13 09:37:35 - INFO - [c36e2970-15de-48d6-865b-2a38050bad91] - Received prediction request
+2025-09-13 09:37:35 - ERROR - [c36e2970-15de-48d6-865b-2a38050bad91] - {"timestamp": "2025-09-13T09:37:35.869716", "session_id": "c36e2970-15de-48d6-865b-2a38050bad91", "input_data": {"carat_weight": "10", "length": "5", "width": "12", "depth": "3", "gem_type": "Sapphire", "gem_variety": "Blue Sapphire", "cut_shape": "Oval", "color": "Blue", "tone": "Light", "color_modifier": "", "clarity": "VVS", "treatments": "Unheated", "certification": "Yes"}, "prediction": null, "error": "Error during prediction: columns are missing: {'Colour'}"}
+2025-09-13 09:37:48 - INFO - [6824122b-61ea-433a-85ac-7aa200d69431] - Received prediction request
+2025-09-13 09:37:48 - ERROR - [6824122b-61ea-433a-85ac-7aa200d69431] - {"timestamp": "2025-09-13T09:37:48.427069", "session_id": "6824122b-61ea-433a-85ac-7aa200d69431", "input_data": {"carat_weight": "10", "length": "5", "width": "12", "depth": "3", "gem_type": "Sapphire", "gem_variety": "Blue Sapphire", "cut_shape": "Oval", "color": "Blue", "tone": "Light", "color_modifier": "", "clarity": "VVS", "treatments": "Unheated", "certification": "Yes"}, "prediction": null, "error": "Error during prediction: columns are missing: {'Colour'}"}
+2025-09-13 09:38:04 - INFO - [06b171d1-bd38-4681-9e70-b24dc38d23f0] - Received prediction request
+2025-09-13 09:38:04 - ERROR - [06b171d1-bd38-4681-9e70-b24dc38d23f0] - {"timestamp": "2025-09-13T09:38:04.785287", "session_id": "06b171d1-bd38-4681-9e70-b24dc38d23f0", "input_data": {"carat_weight": "10", "length": "5", "width": "12", "depth": "3", "gem_type": "Sapphire", "gem_variety": "Orange Sapphire", "cut_shape": "Oval", "color": "Green", "tone": "Light", "color_modifier": "", "clarity": "VVS", "treatments": "Unheated", "certification": "Yes"}, "prediction": null, "error": "Error during prediction: columns are missing: {'Colour'}"}
+2025-09-13 09:39:22 - INFO - [36cb2897-d884-48d2-9335-7f03ff668790] - Received prediction request
+2025-09-13 09:39:22 - ERROR - [36cb2897-d884-48d2-9335-7f03ff668790] - {"timestamp": "2025-09-13T09:39:22.071592", "session_id": "36cb2897-d884-48d2-9335-7f03ff668790", "input_data": {"carat_weight": "10", "length": "5", "width": "12", "depth": "3", "gem_type": "Emerald", "gem_variety": "Emerald", "cut_shape": "Cushion", "color": "Green", "tone": "Hot", "color_modifier": "", "clarity": "SI1", "treatments": "Heated", "certification": "No"}, "prediction": null, "error": "Error during prediction: columns are missing: {'Colour'}"}
+2025-09-13 09:40:36 - INFO - [ac97f3a7-6a80-4db7-9aa2-dfa96361583f] - Received prediction request
+2025-09-13 09:40:37 - INFO - [ac97f3a7-6a80-4db7-9aa2-dfa96361583f] - Successful prediction completed in 0.04s
+2025-09-13 09:41:21 - INFO - [78c09151-7fa8-465d-ba88-a5e21e88d443] - Received prediction request
+2025-09-13 09:41:21 - INFO - [78c09151-7fa8-465d-ba88-a5e21e88d443] - Successful prediction completed in 0.03s
+2025-09-13 09:41:29 - INFO - [22e793a4-5314-411a-b0b5-b8ad78dd165d] - Received prediction request
+2025-09-13 09:41:29 - INFO - [22e793a4-5314-411a-b0b5-b8ad78dd165d] - Successful prediction completed in 0.03s
+2025-09-13 11:16:22 - INFO - [8968e136-e2ee-4df6-9b5d-bad06ec8530f] - Received prediction request
+2025-09-13 11:16:22 - INFO - [8968e136-e2ee-4df6-9b5d-bad06ec8530f] - Successful prediction completed in 0.11s
+2025-09-13 11:16:39 - INFO - [4ec1000a-acfa-4b53-ab06-f57ccdf62a61] - Received prediction request
+2025-09-13 11:16:39 - INFO - [4ec1000a-acfa-4b53-ab06-f57ccdf62a61] - Successful prediction completed in 0.10s
+2025-09-13 11:16:56 - INFO - [6917f67f-b288-40eb-8621-c974ebccc570] - Received prediction request
+2025-09-13 11:16:56 - INFO - [6917f67f-b288-40eb-8621-c974ebccc570] - Successful prediction completed in 0.09s
+2025-09-13 11:22:13 - INFO - [3e0b89fc-a71b-4139-8433-d9dc62954040] - Received prediction request
+2025-09-13 11:22:13 - INFO - [3e0b89fc-a71b-4139-8433-d9dc62954040] - Successful prediction completed in 0.11s
+2025-09-13 11:23:26 - INFO - [678cf39c-d215-4555-b813-72d2f59a6d8e] - Received prediction request
+2025-09-13 11:23:27 - INFO - [678cf39c-d215-4555-b813-72d2f59a6d8e] - Successful prediction completed in 0.07s
+2025-09-13 11:24:54 - INFO - [d68f7a12-23b8-48c4-a7e6-15f9335df38b] - Received prediction request
+2025-09-13 11:24:54 - INFO - [d68f7a12-23b8-48c4-a7e6-15f9335df38b] - Successful prediction completed in 0.08s

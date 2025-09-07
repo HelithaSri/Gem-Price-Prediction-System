@@ -47,6 +47,40 @@
             padding: 32px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Language Selector Styles */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .language-selector select {
+            background: transparent;
+            border: 2px solid var(--brand);
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 12px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: auto;
+            width: auto;
+        }
+
+        .language-selector select:hover {
+            border-color: var(--brand);
+            color: var(--ink);
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: var(--brand);
+            box-shadow: 0 0 0 2px var(--ring);
+            color: var(--ink);
         }
 
         h1 {
@@ -336,99 +370,121 @@
     <main class="wrap">
         <!-- Screen A: Prediction Form -->
         <section id="screen-form" class="card" aria-labelledby="title">
-            <h1 id="title"><span class="gem-icon"></span> Gem Price Prediction</h1>
-            <p class="sub">Get accurate market valuations for precious gemstones using advanced ML algorithms. Enter
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <select id="languageSelector">
+                    <option value="en">EN</option>
+                    <option value="si">සි</option>
+                    <option value="ta">த</option>
+                </select>
+            </div>
+
+            <h1 id="title"><span>💎</span> <span data-lang="title">Gem Price Prediction</span></h1>
+            <p class="sub" data-lang="subtitle">Get accurate market valuations for precious gemstones using advanced ML
+                algorithms. Enter
                 your gem's characteristics below for an instant price estimate.</p>
 
             <form id="predictForm">
                 <div class="grid two">
                     <!-- Numeric Inputs -->
                     <div>
-                        <label for="carat_weight">Carat Weight <span style="color:var(--error)">*</span></label>
+                        <label for="carat_weight"><span data-lang="carat_weight">Carat Weight</span> <span
+                                style="color:var(--error)">*</span></label>
                         <input id="carat_weight" name="carat_weight" type="number" step="0.01" min="0.1" max="50"
                             placeholder="e.g., 2.15" required>
-                        <small class="help">Range: 0.1 - 50.0 carats</small>
+                        <small class="help"><span data-lang="carat_range">Range: 0.1 - 50.0 carats</span></small>
                     </div>
 
                     <div>
-                        <label for="length">Length (mm) <span style="color:var(--error)">*</span></label>
+                        <label for="length"><span data-lang="length">Length (mm)</span> <span
+                                style="color:var(--error)">*</span></label>
                         <input id="length" name="length" type="number" step="0.1" min="0.5" max="30"
                             placeholder="e.g., 8.5" required>
                     </div>
 
                     <div>
-                        <label for="width">Width (mm) <span style="color:var(--error)">*</span></label>
+                        <label for="width"><span data-lang="width">Width (mm)</span> <span
+                                style="color:var(--error)">*</span></label>
                         <input id="width" name="width" type="number" step="0.1" min="0.5" max="30"
                             placeholder="e.g., 6.5" required>
                     </div>
 
                     <div>
-                        <label for="depth">Depth (mm) <span style="color:var(--error)">*</span></label>
+                        <label for="depth"><span data-lang="depth">Depth (mm)</span> <span
+                                style="color:var(--error)">*</span></label>
                         <input id="depth" name="depth" type="number" step="0.1" min="0.5" max="30"
                             placeholder="e.g., 4.2" required>
+                        <small class="help"><span data-lang="depth_help">Height from table (top) to culet
+                                (bottom)</span></small>
                     </div>
 
                     <!-- Categorical Inputs -->
                     <div>
-                        <label for="gem_type">Base Gem Type <span style="color:var(--error)">*</span></label>
+                        <label for="gem_type"><span data-lang="gem_type">Base Gem Type</span> <span
+                                style="color:var(--error)">*</span></label>
                         <select id="gem_type" name="gem_type" required>
-                            <option value="">Select base type...</option>
+                            <option value="" data-lang="select_gem_type">Select base type...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="gem_variety">Gem Variety</label>
+                        <label for="gem_variety"><span data-lang="gem_variety">Gem Variety</span></label>
                         <select id="gem_variety" name="gem_variety">
-                            <option value="">Select variety...</option>
+                            <option value="" data-lang="select_gem_variety">Select variety...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="cut_shape">Cut/Shape <span style="color:var(--error)">*</span></label>
+                        <label for="cut_shape"><span data-lang="cut_shape">Cut/Shape</span> <span
+                                style="color:var(--error)">*</span></label>
                         <select id="cut_shape" name="cut_shape" required>
-                            <option value="">Select cut/shape...</option>
+                            <option value="" data-lang="select_cut_shape">Select cut/shape...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="color">Basic Color <span style="color:var(--error)">*</span></label>
+                        <label for="color"><span data-lang="color">Basic Color</span> <span
+                                style="color:var(--error)">*</span></label>
                         <select id="color" name="color" required>
-                            <option value="">Select color...</option>
+                            <option value="" data-lang="select_color">Select color...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="tone">Color Tone</label>
+                        <label for="tone"><span data-lang="tone">Color Tone</span></label>
                         <select id="tone" name="tone">
-                            <option value="">Select tone...</option>
+                            <option value="" data-lang="select_tone">Select tone...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="color_modifier">Color Modifier</label>
+                        <label for="color_modifier"><span data-lang="color_modifier">Color Modifier</span></label>
                         <select id="color_modifier" name="color_modifier">
-                            <option value="">Select modifier...</option>
+                            <option value="" data-lang="select_color_modifier">Select modifier...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="clarity">Clarity <span style="color:var(--error)">*</span></label>
+                        <label for="clarity"><span data-lang="clarity">Clarity</span> <span
+                                style="color:var(--error)">*</span></label>
                         <select id="clarity" name="clarity" required>
-                            <option value="">Select clarity...</option>
+                            <option value="" data-lang="select_clarity">Select clarity...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="treatments">Treatment <span style="color:var(--error)">*</span></label>
+                        <label for="treatments"><span data-lang="treatments">Treatment</span> <span
+                                style="color:var(--error)">*</span></label>
                         <select id="treatments" name="treatments" required>
-                            <option value="">Select treatment...</option>
+                            <option value="" data-lang="select_treatments">Select treatment...</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="certification">Certification <span style="color:var(--error)">*</span></label>
+                        <label for="certification"><span data-lang="certification">Certification</span> <span
+                                style="color:var(--error)">*</span></label>
                         <select id="certification" name="certification" required>
-                            <option value="">Select certification status...</option>
+                            <option value="" data-lang="select_certification">Select certification status...</option>
                         </select>
                     </div>
                 </div>
@@ -443,19 +499,29 @@
 
                 <div class="actions">
                     <button id="btnPredict" type="submit" class="btn-primary">
-                        <span class="gem-icon"></span>
-                        Get Price Prediction
+                        <span>💎</span>
+                        <span data-lang="get_prediction">Get Price Prediction</span>
                     </button>
-                    <button class="ghost" type="reset">Clear Form</button>
+                    <button class="ghost" type="reset"><span data-lang="clear_form">Clear Form</span></button>
                 </div>
             </form>
 
-            <footer>Powered by advanced ML algorithms • Ratnapura Gem Market Data</footer>
+            <footer><span data-lang="footer">Powered by advanced ML algorithms • Ratnapura Gem Market Data</span>
+            </footer>
         </section>
 
         <!-- Screen B: Result -->
         <section id="screen-result" class="card hidden" aria-labelledby="resTitle">
-            <h1 id="resTitle">💎 Prediction Result</h1>
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <select id="languageSelector2">
+                    <option value="en">EN</option>
+                    <option value="si">සි</option>
+                    <option value="ta">த</option>
+                </select>
+            </div>
+
+            <h1 id="resTitle">💎 <span data-lang="prediction_result">Prediction Result</span></h1>
 
             <div class="result-container fade-in">
                 <div id="resultBox">
@@ -467,30 +533,33 @@
 
                     <div class="price pulse" id="priceText"></div>
                     <div class="prediction-time" id="predictionTime">
-                        Prediction made on: <span id="predictionDateTime"></span>
+                        <span data-lang="prediction_made">Prediction made on:</span> <span
+                            id="predictionDateTime"></span>
                     </div>
                 </div>
 
                 <div class="divider"></div>
 
                 <p class="note">
-                    <strong>Disclaimer:</strong> This estimate is generated using machine learning models trained on
-                    historical market data. Actual market prices may vary based on current demand, market conditions,
-                    and additional factors not captured in this model. Always consult with certified gemologists for
-                    official valuations.
+                    <strong><span data-lang="disclaimer_title">Disclaimer:</span></strong> <span
+                        data-lang="disclaimer_text">This estimate is generated using machine learning models trained on
+                        historical market data. Actual market prices may vary based on current demand, market
+                        conditions,
+                        and additional factors not captured in this model. Always consult with certified gemologists for
+                        official valuations.</span>
                 </p>
 
                 <div class="error-container hidden" id="errorContainer">
-                    <h3>Errors Occurred</h3>
+                    <h3><span data-lang="errors_occurred">Errors Occurred</span></h3>
                     <div id="errorMessages"></div>
                 </div>
 
                 <div class="actions">
                     <button class="ghost" type="button" id="btnBackToForm">
-                        Make Another Prediction
+                        <span data-lang="make_another">Make Another Prediction</span>
                     </button>
                     <button class="btn-primary" type="button" id="btnShareResult">
-                        Share Result
+                        <span data-lang="share_result">Share Result</span>
                     </button>
                 </div>
             </div>
@@ -500,8 +569,169 @@
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+        // Translation data
+        const translations = {
+            en: {
+                title: "Gem Price Prediction",
+                subtitle: "Get accurate market valuations for precious gemstones using advanced ML algorithms. Enter your gem's characteristics below for an instant price estimate.",
+                carat_weight: "Carat Weight",
+                carat_range: "Range: 0.1 - 50.0 carats",
+                length: "Length (mm)",
+                width: "Width (mm)",
+                depth: "Depth (mm)",
+                depth_help: "Height from table (top) to culet (bottom)",
+                gem_type: "Base Gem Type",
+                gem_variety: "Gem Variety",
+                cut_shape: "Cut/Shape",
+                color: "Basic Color",
+                tone: "Color Tone",
+                color_modifier: "Color Modifier",
+                clarity: "Clarity",
+                treatments: "Treatment",
+                certification: "Certification",
+                select_gem_type: "Select base type...",
+                select_gem_variety: "Select variety...",
+                select_cut_shape: "Select cut/shape...",
+                select_color: "Select color...",
+                select_tone: "Select tone...",
+                select_color_modifier: "Select modifier...",
+                select_clarity: "Select clarity...",
+                select_treatments: "Select treatment...",
+                select_certification: "Select certification status...",
+                get_prediction: "Get Price Prediction",
+                clear_form: "Clear Form",
+                footer: "Powered by advanced ML algorithms • Ratnapura Gem Market Data",
+                prediction_result: "Prediction Result",
+                prediction_made: "Prediction made on:",
+                disclaimer_title: "Disclaimer:",
+                disclaimer_text: "This estimate is generated using machine learning models trained on historical market data. Actual market prices may vary based on current demand, market conditions, and additional factors not captured in this model. Always consult with certified gemologists for official valuations.",
+                errors_occurred: "Errors Occurred",
+                make_another: "Make Another Prediction",
+                share_result: "Share Result"
+            },
+            si: {
+                title: "මැණික් මිල අනුමාන කිරීම",
+                subtitle: "උසස් AI ප්‍රවේශම භාවිතා කරමින් වටිනා මැණිකේ නිශ්චිත වෙළඳපල වර්ගීකරණයක් ලබා ගන්න. ක්ෂණික මිල ගණන් කිරීමක් සඳහා ඔබේ මැණිකේ ලක්ෂණ පහතින් ඇතුළත් කරන්න.",
+                carat_weight: "කැරට් බර",
+                carat_range: "පරාසය: 0.1 - 50.0 කැරට්",
+                length: "දිග (මි.මී.)",
+                width: "පළල (මි.මී.)",
+                depth: "ගැඹුර (මි.මී.)",
+                depth_help: "මුදුනේ සිට පතුලට ඇති උස",
+                gem_type: "මූලික මැණික් වර්ගය",
+                gem_variety: "මැණික් ප්‍රභේදය",
+                cut_shape: "කැපීම/හැඩය",
+                color: "මූලික වර්ණය",
+                tone: "වර්ණ නාදය",
+                color_modifier: "වර්ණ වෙනස් කරන්නා",
+                clarity: "පැහැදිලිකම",
+                treatments: "ප්‍රතිකාර",
+                certification: "සහතිකය",
+                select_gem_type: "මූලික වර්ගය තෝරන්න...",
+                select_gem_variety: "ප්‍රභේදය තෝරන්න...",
+                select_cut_shape: "කැපීම/හැඩය තෝරන්න...",
+                select_color: "වර්ණය තෝරන්න...",
+                select_tone: "නාදය තෝරන්න...",
+                select_color_modifier: "වෙනස් කරන්නා තෝරන්න...",
+                select_clarity: "පැහැදිලිකම තෝරන්න...",
+                select_treatments: "ප්‍රතිකාරය තෝරන්න...",
+                select_certification: "සහතික තත්ත්වය තෝරන්න...",
+                get_prediction: "මිල අනුමානය ලබා ගන්න",
+                clear_form: "පෝරමය මකන්න",
+                footer: "උසස් AI ප්‍රවේශමයන්ගේ සහාය • රත්නපුර මැණික් වෙළඳපල දත්ත",
+                prediction_result: "අනුමාන ප්‍රතිඵලය",
+                prediction_made: "අනුමානය කරන ලද්දේ:",
+                disclaimer_title: "නියම කිරීම:",
+                disclaimer_text: "මෙම ඇස්තමේන්තුව ඓතිහාසික වෙළඳපල දත්ත මත පුහුණු කරන ලද යන්ත්‍ර ඉගෙනීමේ ආකෘති භාවිතයෙන් උත්පාදනය කර ඇත. සත්‍ය වෙළඳපල මිල වර්තමාන ඉල්ලුම, වෙළඳපල තත්ත්වයන් සහ මෙම ආකෘතියේ ගැටගැසී නොමැති අතිරේක සාධක මත වෙනස් විය හැක. නිල වර්ගීකරණ සඳහා සැමවිටම සහතික කරන ලද මැණික් විශේෂඥයන්ගෙන් උපදෙස් ලබා ගන්න.",
+                errors_occurred: "දෝෂ ඇති විය",
+                make_another: "තවත් අනුමානයක් කරන්න",
+                share_result: "ප්‍රතිඵලය බෙදා ගන්න"
+            },
+            ta: {
+                title: "ரத்தின விலை கணிப்பு",
+                subtitle: "மேம்பட்ட AI வழிமுறைகளைப் பயன்படுத்தி விலையுயர்ந்த ரத்தினங்களுக்கான துல்லியமான சந்தை மதிப்பீடுகளைப் பெறுங்கள். உடனடி விலை மதிப்பீட்டிற்காக உங்கள் ரத்தினத்தின் பண்புகளை கீழே உள்ளிடவும்.",
+                carat_weight: "கரட் எடை",
+                carat_range: "வரம்பு: 0.1 - 50.0 கரட்",
+                length: "நீளம் (மி.மீ.)",
+                width: "அகலம் (மி.மீ.)",
+                depth: "ஆழம் (மி.மீ.)",
+                depth_help: "மேல் மேசையிலிருந்து கீழ் முனை வரை உயரம்",
+                gem_type: "அடிப்படை ரத்தின வகை",
+                gem_variety: "ரத்தின வகை",
+                cut_shape: "வெட்டு/வடிவம்",
+                color: "அடிப்படை நிறம்",
+                tone: "நிற தொனி",
+                color_modifier: "நிற மாற்றி",
+                clarity: "தெளிவு",
+                treatments: "சிகிச்சை",
+                certification: "சான்றிதழ்",
+                select_gem_type: "அடிப்படை வகையைத் தேர்ந்தெடுக்கவும்...",
+                select_gem_variety: "வகையைத் தேர்ந்தெடுக்கவும்...",
+                select_cut_shape: "வெட்டு/வடிவத்தைத் தேர்ந்தெடுக்கவும்...",
+                select_color: "நிறத்தைத் தேர்ந்தெடுக்கவும்...",
+                select_tone: "தொனியைத் தேர்ந்தெடுக்கவும்...",
+                select_color_modifier: "மாற்றியைத் தேர்ந்தெடுக்கவும்...",
+                select_clarity: "தெளிவைத் தேர்ந்தெடுக்கவும்...",
+                select_treatments: "சிகிச்சையைத் தேர்ந்தெடுக்கவும்...",
+                select_certification: "சான்றிதழ் நிலையைத் தேர்ந்தெடுக்கவும்...",
+                get_prediction: "விலை கணிப்பைப் பெறுங்கள்",
+                clear_form: "படிவத்தை அழிக்கவும்",
+                footer: "மேம்பட்ட AI வழிமுறைகளால் இயக்கப்படுகிறது • இரத்தினபுரி ரத்தின சந்தை தரவு",
+                prediction_result: "கணிப்பு முடிவு",
+                prediction_made: "கணிப்பு செய்யப்பட்டது:",
+                disclaimer_title: "மறுப்பு:",
+                disclaimer_text: "இந்த மதிப்பீடு வரலாற்று சந்தை தரவுகளில் பயிற்சி பெற்ற இயந்திர கற்றல் மாதிரிகளைப் பயன்படுத்தி உருவாக்கப்படுகிறது. உண்மையான சந்தை விலைகள் தற்போதைய தேவை, சந்தை நிலைமைகள் மற்றும் இந்த மாதிரியில் கைப்பற்றப்படாத கூடுதல் காரணிகளின் அடிப்படையில் மாறுபடலாம். அதிகாரப்பூர்வ மதிப்பீடுகளுக்கு எப்போதும் சான்றளிக்கப்பட்ட ரத்தின நிபுணர்களுடன் ஆலோசனை செய்யுங்கள்.",
+                errors_occurred: "பிழைகள் நிகழ்ந்தன",
+                make_another: "மற்றொரு கணிப்பு செய்யுங்கள்",
+                share_result: "முடிவைப் பகிருங்கள்"
+            }
+        };
+
+        // Language switching function
+        function switchLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+
+            $('[data-lang]').each(function () {
+                const key = $(this).data('lang');
+                if (translations[lang] && translations[lang][key]) {
+                    $(this).text(translations[lang][key]);
+                }
+            });
+
+            // Update placeholder text and form attributes based on language
+            if (lang === 'si') {
+                $('#carat_weight').attr('placeholder', 'උ.දා., 2.15');
+                $('#length').attr('placeholder', 'උ.දා., 8.5');
+                $('#width').attr('placeholder', 'උ.දා., 6.5');
+                $('#depth').attr('placeholder', 'උ.දා., 4.2');
+            } else if (lang === 'ta') {
+                $('#carat_weight').attr('placeholder', 'உ.மி., 2.15');
+                $('#length').attr('placeholder', 'உ.மி., 8.5');
+                $('#width').attr('placeholder', 'உ.மி., 6.5');
+                $('#depth').attr('placeholder', 'உ.மி., 4.2');
+            } else {
+                $('#carat_weight').attr('placeholder', 'e.g., 2.15');
+                $('#length').attr('placeholder', 'e.g., 8.5');
+                $('#width').attr('placeholder', 'e.g., 6.5');
+                $('#depth').attr('placeholder', 'e.g., 4.2');
+            }
+        }
+
         $(document).ready(function () {
             let optionsCache = null;
+
+            // Initialize language from localStorage or default to English
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            $('#languageSelector, #languageSelector2').val(savedLanguage);
+            switchLanguage(savedLanguage);
+
+            // Language selector change handler for both selectors
+            $('#languageSelector, #languageSelector2').on('change', function () {
+                const selectedLang = $(this).val();
+                // Sync both selectors
+                $('#languageSelector, #languageSelector2').val(selectedLang);
+                switchLanguage(selectedLang);
+            });
 
             // Load dropdown options when page loads
             function loadOptions() {
@@ -516,7 +746,12 @@
                             const selectId = key.toLowerCase().replace(/[^a-z]/g, '_');
                             const $select = $('#' + selectId);
                             if ($select.length) {
-                                $select.html('<option value="">Select ' + key + '...</option>');
+                                // Get current language for placeholder text
+                                const currentLang = $('#languageSelector').val();
+                                const placeholderKey = 'select_' + selectId;
+                                const placeholder = translations[currentLang][placeholderKey] || 'Select ' + key + '...';
+
+                                $select.html('<option value="">' + placeholder + '</option>');
                                 values.forEach(value => {
                                     $select.append($('<option>', {
                                         value: value,
@@ -559,15 +794,22 @@
                 if (!optionsCache) return;
 
                 const $varietySelect = $('#gem_variety');
-                $varietySelect.html('<option value="">Select variety...</option>');
+                const currentLang = $('#languageSelector').val();
+                const placeholder = translations[currentLang]['select_gem_variety'] || 'Select variety...';
+                $varietySelect.html('<option value="">' + placeholder + '</option>');
 
                 if (!baseType) return;
 
-                // Filter varieties for the selected base type
-                const varieties = optionsCache['Gem Variety'].filter(variety =>
-                    variety.includes(baseType) ||
-                    (baseType === 'Sapphire' && variety.includes('Padparadscha'))
-                );
+                // Filter varieties for the selected base type from the actual dataset
+                const varieties = optionsCache['Gem Variety'].filter(variety => {
+                    const varietyLower = variety.toLowerCase();
+                    const baseTypeLower = baseType.toLowerCase();
+
+                    // For exact matches or contains the base type
+                    return varietyLower.includes(baseTypeLower) ||
+                        varietyLower === baseTypeLower ||
+                        (baseType === 'Sapphire' && varietyLower.includes('padparadscha'));
+                });
 
                 varieties.forEach(variety => {
                     $varietySelect.append($('<option>', {
@@ -598,14 +840,22 @@
                 });
 
                 if (!isValid) {
-                    alert('Please fill in all required fields.');
+                    const currentLang = $('#languageSelector').val();
+                    const errorMessage = currentLang === 'si' ? 'කරුණාකර සියලුම අවශ්‍ය ක්ෂේත්‍ර පුරවන්න.' :
+                        currentLang === 'ta' ? 'தயவுசெய்து அனைத்து தேவையான புலங்களையும் நிரப்பவும்.' :
+                            'Please fill in all required fields.';
+                    alert(errorMessage);
                     return;
                 }
 
                 // Show loading state
                 const $btn = $('#btnPredict');
                 const originalText = $btn.html();
-                $btn.addClass('loading').html('Analyzing...');
+                const currentLang = $('#languageSelector').val();
+                const loadingText = currentLang === 'si' ? 'විශ්ලේෂණය කරමින්...' :
+                    currentLang === 'ta' ? 'பகுப்பாய்வு செய்கிறது...' :
+                        'Analyzing...';
+                $btn.addClass('loading').html(loadingText);
 
                 // Prepare form data as JSON
                 const formData = {};
@@ -638,7 +888,9 @@
                                 `).join('');
 
                             $('.input-summary').html(`
-                                <h3>Gem Details</h3>
+                                <h3>${currentLang === 'si' ? 'මැණික් විස්තර' :
+                                    currentLang === 'ta' ? 'ரத்தின விவரங்கள்' :
+                                        'Gem Details'}</h3>
                                 ${summaryHtml}
                             `);
 
@@ -654,7 +906,11 @@
                     },
                     error: function (error) {
                         console.error('Error:', error);
-                        alert('An error occurred during prediction. Please try again.');
+                        const currentLang = $('#languageSelector').val();
+                        const errorMessage = currentLang === 'si' ? 'අනුමාන කිරීමේදී දෝෂයක් ඇති විය. කරුණාකර නැවත උත්සාහ කරන්න.' :
+                            currentLang === 'ta' ? 'கணிப்பின் போது பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.' :
+                                'An error occurred during prediction. Please try again.';
+                        alert(errorMessage);
                     },
                     complete: function () {
                         // Reset button state
@@ -675,18 +931,31 @@
             $('#btnShareResult').on('click', function () {
                 const prediction = $('#priceText').text();
                 const details = $('.input-summary').text().replace(/\s+/g, ' ').trim();
+                const currentLang = $('#languageSelector').val();
 
-                const shareText = `Gem Price Prediction:\n${prediction}\n\nDetails:\n${details}`;
+                const shareTitle = currentLang === 'si' ? 'මැණික් මිල අනුමානය:' :
+                    currentLang === 'ta' ? 'ரத்தின விலை கணிப்பு:' :
+                        'Gem Price Prediction:';
+
+                const detailsLabel = currentLang === 'si' ? '\n\nවිස්තර:\n' :
+                    currentLang === 'ta' ? '\n\nவிவரங்கள்:\n' :
+                        '\n\nDetails:\n';
+
+                const shareText = `${shareTitle}\n${prediction}${detailsLabel}${details}`;
 
                 if (navigator.share) {
                     navigator.share({
-                        title: 'Gem Price Prediction',
+                        title: shareTitle,
                         text: shareText
                     }).catch(console.error);
                 } else {
                     // Fallback: Copy to clipboard
+                    const successMessage = currentLang === 'si' ? 'අනුමාන විස්තර ක්ලිප්බෝර්ඩයට පිටපත් කරන ලදී!' :
+                        currentLang === 'ta' ? 'கணிப்பு விவரங்கள் கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது!' :
+                            'Prediction details copied to clipboard!';
+
                     navigator.clipboard.writeText(shareText)
-                        .then(() => alert('Prediction details copied to clipboard!'))
+                        .then(() => alert(successMessage))
                         .catch(console.error);
                 }
             });
