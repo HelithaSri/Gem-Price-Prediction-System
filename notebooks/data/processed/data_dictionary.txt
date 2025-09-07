@@ -1,0 +1,209 @@
+# Gem Dataset Data Dictionary
+
+## Gem Type
+Description: Type of gemstone
+Standardization: Mapped variations to standard names, corrected spellings
+Unique values:
+- Alexandrite
+- Almandine Garnet
+- Amethyst
+- Andesine
+- Apatite
+- Aquamarine
+- Beryl
+- Chrysoberyl
+- Citrine
+- Cobalt Spinel
+- Fluorite
+- Garnet
+- Hessonite Garnet
+- Kornerupine
+- Moonstone
+- Peridot
+- Rhodolite Garnet
+- Rubellite Tourmaline
+- Ruby
+- Rutilated Quartz
+- Sapphire
+- Scapolite
+- Sinhalite
+- Smokey Quartz
+- Spessartite Garnet
+- Spinel
+- Topaz
+- Tourmaline
+- Zircon
+
+## Clarity
+Description: Clarity grade of the gemstone
+Standardization: Mapped to standard grades: VVS, VS, SI, I, Eye Clean
+Unique values:
+- Eye Clean
+- I
+- SI
+- VS
+- VVS
+
+## Colour
+Description: Color of the gemstone
+Standardization: Mapped color variations to standard categories
+Unique values:
+- Bi Color
+- Black
+- Blue
+- Blue Flash
+- Bluish Green
+- Bluish Green To Reddish Purple
+- Bluish Grey
+- Bluish Purple
+- Brown
+- Brownish Green
+- Brownish Orange
+- Brownish Pink
+- Brownish Red
+- Brownish Yellow
+- Color Change
+- Golden
+- Golden Brown
+- Golden Brownish Green
+- Golden Orange
+- Green
+- Green To Brown
+- Green To Brownish Yellow
+- Green To Pink
+- Green To Purple
+- Green To Purplish Red
+- Greenish Blue
+- Greenish Brown
+- Greenish Yellow
+- Grey
+- Greyish Blue
+- Greyish Brown
+- Greyish Violet
+- Orange
+- Orangish Brown
+- Orangish Red
+- Orangish Yellow
+- Padparadscha
+- Peach
+- Pink
+- Pinkish Brown
+- Pinkish Purple
+- Pinkish Red
+- Purple
+- Purplish Blue
+- Purplish Grey
+- Purplish Pink
+- Purplish Red
+- Rainbow
+- Red
+- Reddish Orange
+- Reddish Pink
+- Reddish Purple
+- Sky Blue
+- Smoky
+- Swiss Blue
+- Violet
+- Watermelon
+- White
+- Yellow
+- Yellowish Brown
+- Yellowish Green
+- Yellowish Green To Brownish Orange
+- Yellowish Green To Purplish Brown
+- Yellowish Green To Reddish Brown
+- Yellowish Green To Reddish Green
+- Yellowish Orange
+
+## Cut/Shape
+Description: Cut and shape of the gemstone
+Standardization: Standardized cut/shape terminology
+Unique values:
+- Asscher Asscher - Octagon
+- Asscher Emerald Cut
+- Asscher Oval
+- Asscher Pear
+- Asscher Round
+- Brilliant Cushion
+- Brilliant Oval
+- Brilliant Pear
+- Brilliant Round
+- Buff Top Fancy
+- Cabochon Fancy
+- Cabochon Marquise
+- Cabochon Oval
+- Cabochon Pear
+- Cabochon Round
+- Carving Round
+- Checkerboard Cushion
+- Checkerboard Emerald Cut
+- Checkerboard Oval
+- Checkerboard Pear
+- Checkerboard Round
+- Checkerboard Trillion
+- Designer Cut Oval
+- Double Cabochon Oval
+- Double Cabochon Round
+- Emerald Cut Asscher - Octagon
+- Emerald Cut Cushion
+- Emerald Cut Emerald Cut
+- Emerald Cut Radiant
+- European Cut Emerald Cut
+- Fancy Brilliant Cushion
+- Fancy Brilliant Fancy
+- Fancy Brilliant Oval
+- Fancy Cut Asscher - Octagon
+- Fancy Cut Fancy
+- Mixed Brilliant Asscher - Octagon
+- Mixed Brilliant Cushion
+- Mixed Brilliant Emerald Cut
+- Mixed Brilliant Fancy
+- Mixed Brilliant Heart
+- Mixed Brilliant Marquise
+- Mixed Brilliant Oval
+- Mixed Brilliant Pear
+- Mixed Brilliant Radiant
+- Mixed Brilliant Round
+- Mixed Brilliant Trillion
+- Modified Brilliant Cushion
+- Modified Brilliant Heart
+- Modified Brilliant Oval
+- Modified Brilliant Pear
+- Modified Brilliant Radiant
+- Modified Brilliant Round
+- Princess Cut Cushion
+- Princess Cut Princess
+- Radiant Cut Asscher - Octagon
+- Radiant Cut Cushion
+- Radiant Cut Emerald Cut
+- Radiant Cut Heart
+- Radiant Cut Pear
+- Radiant Cut Radiant
+- Radiant Cut Round
+- Step Cut Asscher - Octagon
+- Step Cut Cushion
+- Step Cut Emerald Cut
+- Step Cut Fancy
+- Step Cut Princess
+- Step Cut Radiant
+- Sugar Loaf Cushion
+- Sugar Loaf Oval
+- Trillion Cut Trillion
+
+## Treatments
+Description: Treatment methods applied to the gemstone
+Standardization: Mapped to standard treatment categories
+Unique values:
+- Beryllium Diffused
+- Heat Treated
+- Irradiation
+- No Enhancement
+- Not Specified
+- Vapor-Infused Coating
+
+## Certification Status
+Description: Whether the gem is certified
+Standardization: Converted to Yes/No values
+Unique values:
+- Yes
+

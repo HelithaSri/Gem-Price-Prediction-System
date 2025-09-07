@@ -1,0 +1,18 @@
+2025-09-09 00:50:42 - INFO - [f026cdb4-f798-4564-b54a-6d71502fc203] - Received prediction request
+2025-09-09 00:50:42 - ERROR - [f026cdb4-f798-4564-b54a-6d71502fc203] - {"timestamp": "2025-09-09T00:50:42.379671", "session_id": "f026cdb4-f798-4564-b54a-6d71502fc203", "input_data": {"carat_weight": "1", "length": "1", "width": "1", "depth": "1", "gem_type": "Sapphire", "gem_variety": "Blue Sapphire", "cut_shape": "Cushion", "color": "Blue", "tone": "Deep", "color_modifier": "", "clarity": "SI2", "treatments": "Unheated", "certification": ""}, "prediction": null, "error": "['Invalid certification status selection']"}
+2025-09-09 00:54:02 - INFO - [a35c75d6-3109-41e3-abd6-c6546e013663] - Received prediction request
+2025-09-09 00:54:02 - ERROR - [a35c75d6-3109-41e3-abd6-c6546e013663] - {"timestamp": "2025-09-09T00:54:02.749147", "session_id": "a35c75d6-3109-41e3-abd6-c6546e013663", "input_data": {"Carat Weight (ct)": 1.0, "Length_mm": 1.0, "Width_mm": 1.0, "Depth_mm": 1.0, "Gem Type": "Sapphire", "Cut/Shape": "Oval", "ColourHue": "Hot Greenish Blue", "Clarity": "SI1", "Treatments": "Unheated", "Certification Status": "Yes", "LW_Ratio": 1.0, "DepthPct": 100.0}, "prediction": null, "error": "Model not loaded. Please check server logs."}
+2025-09-09 01:03:10 - INFO - [c7546a69-908a-4c83-bc0a-dd763266b8db] - Received prediction request
+2025-09-09 01:03:10 - ERROR - [c7546a69-908a-4c83-bc0a-dd763266b8db] - {"timestamp": "2025-09-09T01:03:10.044335", "session_id": "c7546a69-908a-4c83-bc0a-dd763266b8db", "input_data": {"Carat Weight (ct)": 1.0, "Length_mm": 1.0, "Width_mm": 1.0, "Depth_mm": 1.0, "Gem Type": "Blue Sapphire", "Cut/Shape": "Oval", "ColourHue": "Dark Bluish Blue", "Clarity": "VS", "Treatments": "Heated", "Certification Status": "Yes", "LW_Ratio": 1.0, "DepthPct": 100.0}, "prediction": null, "error": "Model not loaded. Please check server logs."}
+2025-09-09 01:06:11 - INFO - [915b556b-d7f9-4f40-bfcf-1de6273b79cf] - Received prediction request
+2025-09-09 01:06:11 - ERROR - [915b556b-d7f9-4f40-bfcf-1de6273b79cf] - {"timestamp": "2025-09-09T01:06:11.555750", "session_id": "915b556b-d7f9-4f40-bfcf-1de6273b79cf", "input_data": {"Carat Weight (ct)": 1.0, "Length_mm": 1.0, "Width_mm": 1.0, "Depth_mm": 1.0, "Gem Type": "Alexandrite", "Cut/Shape": "Pear", "ColourHue": "Hot Orangish Brown", "Clarity": "SI1", "Treatments": "Heated", "Certification Status": "Yes", "LW_Ratio": 1.0, "DepthPct": 100.0}, "prediction": null, "error": "Model not loaded. Please check server logs."}
+2025-09-13 07:10:40 - INFO - [8701e641-e129-4bb4-8f51-8b9dda4d4671] - Received prediction request
+2025-09-13 07:10:40 - INFO - [8701e641-e129-4bb4-8f51-8b9dda4d4671] - Successful prediction completed in 0.09s
+2025-09-13 07:12:22 - INFO - [6b50cd9c-dd87-4ee0-84bb-9cfa37984812] - Received prediction request
+2025-09-13 07:12:22 - INFO - [6b50cd9c-dd87-4ee0-84bb-9cfa37984812] - Successful prediction completed in 0.08s
+2025-09-13 07:12:33 - INFO - [96dc1060-cf34-4564-837d-53573c0f44f4] - Received prediction request
+2025-09-13 07:12:33 - INFO - [96dc1060-cf34-4564-837d-53573c0f44f4] - Successful prediction completed in 0.03s
+2025-09-13 07:13:24 - INFO - [63d90caf-a20b-4e71-a4c5-88bca340dac2] - Received prediction request
+2025-09-13 07:13:24 - INFO - [63d90caf-a20b-4e71-a4c5-88bca340dac2] - Successful prediction completed in 0.08s
+2025-09-13 07:14:05 - INFO - [af8509a4-8ca9-442e-b7ef-271b2af44776] - Received prediction request
+2025-09-13 07:14:05 - INFO - [af8509a4-8ca9-442e-b7ef-271b2af44776] - Successful prediction completed in 0.06s
